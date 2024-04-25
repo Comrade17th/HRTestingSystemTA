@@ -34,7 +34,6 @@ public class AnswerAdzies : Answer
     public override void SetValue(int value)
     {
         _slider.value = value;
-        Debug.Log($"{_slider.value}");
     }
 
     private void OnSliderValueChanged(float value)

@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ResultMenu : MonoBehaviour
+public class ResultMenu : Window
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Slider[] _sliders;
+    [SerializeField] private Text[] _texts;
+    [SerializeField] private ResultCalculatorAdzies _calculator;
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         
+        int[] results = _calculator.GetResult();
+        for (int i = 0; i < results.Length; i++)
+        {
+            _sliders[i].value = results[i];
+            _texts[i].text = $"{results[i]}";
+        }
     }
 }

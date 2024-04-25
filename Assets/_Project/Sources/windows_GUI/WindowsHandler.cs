@@ -8,26 +8,58 @@ public class WindowsHandler : MonoBehaviour
 {
     [SerializeField] private Window _signInWindow;
     [SerializeField] private Window _testsListWindow;
+    [SerializeField] private TestMenu _testAdzies;
+    [SerializeField] private ResultMenu _resultAdziesMenu;
 
     private void Awake()
     {
         Assert.IsNotNull(_signInWindow);
         Assert.IsNotNull(_testsListWindow);
+        Assert.IsNotNull(_testAdzies);
+        Assert.IsNotNull(_resultAdziesMenu);
     }
 
     private void OnEnable()
     {
-        _signInWindow.OnNextWindowButtonClick += SignInButtonClick;
+        _signInWindow.NextWindowButtonClicked += SignInButtonClick;
+        _testsListWindow.NextWindowButtonClicked += AdziesButtonClick;
+        _testAdzies.ShowResultsButtonClicked += AdziesResultsButtonClick;
+        _resultAdziesMenu.NextWindowButtonClicked += ToMainMenu;
     }
 
     private void OnDisable()
     {
-        _signInWindow.OnNextWindowButtonClick -= SignInButtonClick;
+        _signInWindow.NextWindowButtonClicked -= SignInButtonClick;
+        _testsListWindow.NextWindowButtonClicked -= AdziesButtonClick;
+        _testAdzies.ShowResultsButtonClicked -= AdziesResultsButtonClick;
+        _resultAdziesMenu.NextWindowButtonClicked -= ToMainMenu;
     }
 
     private void SignInButtonClick()
     {
         _signInWindow.Close();
+        _testsListWindow.Open();
+    }
+
+    private void AdziesButtonClick()
+    {
+        _testsListWindow.Close();
+        _testAdzies.Open();
+    }
+
+    private void AdziesResultsButtonClick()
+    {
+        _testAdzies.Close();
+        _resultAdziesMenu.Open();
+    }
+
+    private void ToMainMenu()
+    {
+        Debug.Log($"To main menu");
+        _signInWindow.Close();
+        _testAdzies.Close();
+        _resultAdziesMenu.Close();
+        
         _testsListWindow.Open();
     }
 }

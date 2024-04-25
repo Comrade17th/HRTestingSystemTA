@@ -9,21 +9,21 @@ public class Window : MonoBehaviour
 {
     [SerializeField] protected Button _nextWindowButton;
 
-    public event Action OnNextWindowButtonClick; 
+    public event Action NextWindowButtonClicked; 
     
     private void Awake()
     {
         Assert.IsNotNull(_nextWindowButton);
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        _nextWindowButton.onClick.AddListener(NextWindowButtonClicked);
+        _nextWindowButton.onClick.AddListener(OnNextWindowButtonClick);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
-        _nextWindowButton.onClick.RemoveListener(NextWindowButtonClicked);
+        _nextWindowButton.onClick.RemoveListener(OnNextWindowButtonClick);
     }
 
     public virtual void Close()
@@ -36,8 +36,8 @@ public class Window : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    private void NextWindowButtonClicked()
+    private void OnNextWindowButtonClick()
     {
-        OnNextWindowButtonClick?.Invoke();
+        NextWindowButtonClicked?.Invoke();
     }
 }

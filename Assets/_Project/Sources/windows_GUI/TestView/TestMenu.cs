@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TestMenu : MonoBehaviour
+public class TestMenu : Window
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button _nextQuestion;
+    [SerializeField] private Button _previousQuestion;
+    [SerializeField] private Question _question;
+
+    private void OnEnable()
     {
-        
+        _nextQuestion.onClick.AddListener(_question.LoadNext);
+        _previousQuestion.onClick.AddListener(_question.LoadPrevious);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        _nextQuestion.onClick.RemoveListener(_question.LoadNext);
+        _previousQuestion.onClick.RemoveListener(_question.LoadPrevious);
     }
 }

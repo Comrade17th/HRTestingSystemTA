@@ -31,6 +31,12 @@ public class AnswerAdzies : Answer
         return (int)_slider.value;
     }
 
+    public override void SetValue(int value)
+    {
+        _slider.value = value;
+        Debug.Log($"{_slider.value}");
+    }
+
     private void OnSliderValueChanged(float value)
     {
         ValueChanged?.Invoke((int) value);

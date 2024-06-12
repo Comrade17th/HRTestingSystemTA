@@ -18,12 +18,14 @@ public class Window : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        _nextWindowButton.onClick.AddListener(OnNextWindowButtonClick);
+        if(_nextWindowButton)
+            _nextWindowButton.onClick.AddListener(OnNextWindowButtonClick);
     }
 
     protected virtual void OnDisable()
     {
-        _nextWindowButton.onClick.RemoveListener(OnNextWindowButtonClick);
+        if(_nextWindowButton)
+            _nextWindowButton.onClick.RemoveListener(OnNextWindowButtonClick);
     }
 
     public virtual void Close()

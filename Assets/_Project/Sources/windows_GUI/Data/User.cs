@@ -12,7 +12,8 @@ public class User
     public string name;
     public string forname;
     public string role;
-
+    public TestResults testResults;
+    
     public User(string _login, string _password, string _name, string _forname)
     {
         login = _login;
@@ -22,3 +23,14 @@ public class User
         role = $"User";
     }
 }
+
+[Serializable]
+public class TestResults
+{
+    public int[] Adzies;
+    public string Gerchik; // Типы: Люмпенизированный, Инструментальный, Профессиональный, Патриотический, Хозяйский
+    public string VoiceAI;
+}
+
+
+//

@@ -32,6 +32,7 @@ public class WindowsHandler : MonoBehaviour
         _testVoice.MainMenuButtonClicked += ToMainMenu;
         _testGerchik.NextWindowButtonClicked += ToMainMenu;
         _testsListWindow.GerchikTestButtonClicked += GerchikButtonClick;
+        _testsListWindow.AdziesTestButtonClicked += AdziesButtonClick;
     }
 
     private void OnDisable()
@@ -44,6 +45,7 @@ public class WindowsHandler : MonoBehaviour
         _testVoice.MainMenuButtonClicked -= ToMainMenu;
         _testGerchik.NextWindowButtonClicked -= ToMainMenu;
         _testsListWindow.GerchikTestButtonClicked -= GerchikButtonClick;
+        _testsListWindow.AdziesTestButtonClicked -= AdziesButtonClick;
     }
 
     private void SignInButtonClick()
